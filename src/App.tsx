@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid';
-import { PlusCircle } from 'phosphor-react';
+import { PlusCircle, ClipboardText } from 'phosphor-react';
 
 import { Header } from './components/Header';
 
@@ -24,10 +24,18 @@ function App() {
     {
       id: uuid(),
       title: 'Terminar trilha de react native',
+      isComplete: true,
+    },
+    {
+      id: uuid(),
+      title: 'Terminar trilha de elixir',
       isComplete: false,
     },
 
   ]);
+
+  const numberOfTasks = tasks.length;
+  const numberOfTasksCompleted = tasks.filter(tasks => tasks.isComplete === true).length;
 
   return (
     <div>
@@ -48,15 +56,20 @@ function App() {
           <header>
             <div className={styles.createdTasks}>
               <strong>Tarefas criadas</strong>
-              <span>5</span>
+              <span>{numberOfTasks}</span>
             </div>
             <div className={styles.completedTasks}>
               <strong>Concluídas</strong>
-              <span>2 de 5</span>
+              <span>{`${numberOfTasksCompleted} de ${numberOfTasks}`}</span>
             </div>
           </header>
 
           <main>
+
+            <div className={styles.taskNotFound}>
+              <ClipboardText size={100} />
+              <p><strong>Você ainda não tem tarefas cadastradas</strong> <br /> Crie tarefas e organize seus itens a fazer</p>
+            </div>
 
           </main>
         </section>

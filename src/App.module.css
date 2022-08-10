@@ -2,13 +2,13 @@
   max-width: 70rem;
   margin: 2rem auto;
   margin-top: calc(0px - 3rem);
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: flex-start;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .todoForm {
@@ -60,6 +60,7 @@
 .wrapper section > header {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 3rem;
 }
 
 .wrapper section > header strong {
@@ -85,12 +86,30 @@
   color: var(--blue)
 }
 
-.completedTasks {
-
-}
-
 .completedTasks strong {
   color: var(--purple);
+}
+
+.taskNotFound {
+  border-top: 2.5px solid var(--gray-400);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 4rem;
+}
+
+.taskNotFound svg {
+  color: var(--gray-300);
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+}
+
+.taskNotFound p {
+  font-size: 1.5rem;
+  color: var(--gray-300);
+  text-align: center;
 }
 
 @media (max-width: 768px) {
