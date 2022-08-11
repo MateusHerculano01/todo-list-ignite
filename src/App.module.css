@@ -46,7 +46,7 @@
   font-weight: bold;
   cursor: pointer;
 
-  transition: background-color 0.1s;
+  transition: background 0.1s;
 }
 
 .todoForm button[type="submit"]:hover {

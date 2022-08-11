@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background: var(--gray-400);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wrapper p {
+  width: 90%;
+  font-size: 1.5rem;
+  color: var(--gray-100);
+  text-align: center;
+}
+
+.wrapper p.checked {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.wrapper button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 2px;
+  text-decoration: none;
+
+  transition: color 0.1s;
+  max-height: 2rem;
+
+}
+
+.wrapper button.selectTask {
+  color: var(--blue);
+}
+
+.wrapper button.selectTask:hover {
+  color: var(--blue-dark);
+}
+
+.wrapper button.deleteTask {
+  color: var(--danger-200);
+}
+
+.wrapper button.deleteTask:hover {
+  color: var(--danger-400);
+}
+
+.wrapper svg.checkCircle {
+  color: var(--purple);
+}
+
+.wrapper svg.checkCircle:hover {
+  color: var(--purple-dark);
+}
