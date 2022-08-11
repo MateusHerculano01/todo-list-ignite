@@ -42,9 +42,13 @@ function App() {
     setTasks(tasksWithoutDeleteOne);
   }
 
-  function onCompletedTask(task_id: string) {
-    const tasksWithoutCompletedOne = tasks.filter(task => {
-      return task.isComplete = !task.isComplete;
+  function onToggleCompletedTask(task_id: string) {
+    const tasksWithoutCompletedOne = tasks.map(task => {
+      if (task_id === task.id) {
+        task.isComplete = !task.isComplete;
+      }
+
+      return task;
     });
 
     setTasks(tasksWithoutCompletedOne);
@@ -82,7 +86,7 @@ function App() {
 
           <main>
             {!!numberOfTasks ?
-              (tasks.map((task) => <Task key={task.id} data={task} handleDelete={onDeleteTask} handleCompleted={onCompletedTask} />))
+              (tasks.map((task) => <Task key={task.id} data={task} handleDelete={onDeleteTask} handleCompleted={onToggleCompletedTask} />))
               :
               (<div className={styles.taskNotFound}>
                 <ClipboardText size={100} />
