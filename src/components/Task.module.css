@@ -34,6 +34,11 @@
 
 }
 
+.wrapper button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .wrapper button.selectTask {
   color: var(--blue);
 }
