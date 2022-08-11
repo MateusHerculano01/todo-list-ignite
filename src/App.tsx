@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 import { v4 as uuid } from 'uuid';
 import { PlusCircle, ClipboardText } from 'phosphor-react';
 
 import { Header } from './components/Header';
-import { Task } from './components/Task';
+import { Task, TaskProps } from './components/Task';
 
 import styles from './App.module.css'
 
@@ -11,28 +11,32 @@ import './global.css';
 
 function App() {
 
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+
+  const [taskTitle, setTaskTitle] = useState('');
+
+  function handleNewTask(event: FormEvent) {
+    event.preventDefault();
+
+    setTasks([...tasks,
     {
       id: uuid(),
-      title: 'Lorem impusum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-      isComplete: true,
-    },
-    {
-      id: uuid(),
-      title: 'Terminar trilha de node',
-      isComplete: false,
-    },
-    {
-      id: uuid(),
-      title: 'Terminar trilha de react native',
-      isComplete: true,
-    },
-    {
-      id: uuid(),
-      title: 'Terminar trilha de elixir',
-      isComplete: false,
-    },
-  ]);
+      title: taskTitle,
+      isComplete: false
+    }
+    ]);
+
+    setTaskTitle('');
+  }
+
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('');
+    setTaskTitle(event.target.value);
+  }
+
+  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Preencha uma descrição!');
+  }
 
   function onDeleteTask(task_id: string) {
     const tasksWithoutDeleteOne = tasks.filter(task => {
@@ -63,8 +67,15 @@ function App() {
 
       <div className={styles.wrapper}>
 
-        <form className={styles.todoForm}>
-          <input type="text" placeholder="Adicione uma nova tarefa" />
+        <form onSubmit={handleNewTask} className={styles.todoForm}>
+          <input
+            value={taskTitle}
+            type="text"
+            placeholder="Adicione uma nova tarefa"
+            onChange={handleNewTaskChange}
+            onInvalid={handleNewTaskInvalid}
+            required
+          />
 
           <button type="submit">
             Criar
